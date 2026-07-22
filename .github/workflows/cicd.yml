@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [main]
 jobs:
+  dockerbuild:
+    runs-on: ubuntu-latest
+    steps:
+    -uses: actions/checkout@v3
+    -name: Build The Docker Image
+      run: docker build . --file Dockerfile --tag flask-app:$(date +%s)
   build-and-test:
     runs-on: ubuntu-latest
     steps:
